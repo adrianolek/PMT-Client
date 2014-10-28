@@ -1,0 +1,17 @@
+{
+  "name": "pmt-client",
+  "version": "0.0.1",
+  "authors": [
+    "Adrian Olek <adrianolek@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "angular": "~1.3"
+  }
+}
