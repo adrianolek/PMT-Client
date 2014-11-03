@@ -6,6 +6,8 @@ angular.module('pmtClient.login', ['ngRoute'])
     $routeProvider.when('/login', {templateUrl: 'login/login.html', controller: 'LoginCtrl'});
   }])
 
-  .controller('LoginCtrl', [function () {
-
+  .controller('LoginCtrl', ['$scope', function ($scope) {
+    $scope.login = function () {
+      $scope.error = 'Login error';
+    }
   }]);
