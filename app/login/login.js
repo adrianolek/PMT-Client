@@ -8,6 +8,12 @@ angular.module('pmtClient.login', ['ngRoute'])
 
   .controller('LoginCtrl', ['$scope', function ($scope) {
     $scope.login = function () {
-      $scope.error = 'Login error';
+      if (!$scope.login.url || !$scope.login.url.match(/^https?:\/\/.+/)) {
+        $scope.info = '';
+        $scope.error = 'Url is invalid';
+      } else {
+        $scope.info = 'Logging in...';
+        $scope.error = '';
+      }
     }
   }]);
