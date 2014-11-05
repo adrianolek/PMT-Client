@@ -1,7 +1,7 @@
 <div class="container">
   <form class="form-signin">
     <h2 class="form-signin-heading">Log in</h2>
-    <input type="text" class="form-control" placeholder="https://your-pmt-url.com" ng-model="login.url" autofocus>
+    <input type="text" class="form-control" placeholder="https://your-pmt-url.com" ng-model="url" autofocus>
     <input type="text" class="form-control" placeholder="Username" ng-model="login.username">
     <input type="password" class="form-control" placeholder="Password" ng-model="login.password">
     <div class="checkbox">
@@ -11,7 +11,7 @@
     </div>
     <div ng-if="info" class="alert alert-info">{{ info }}</div>
     <div ng-if="error" class="alert alert-danger">{{ error }}</div>
-    <button class="btn btn-lg btn-primary btn-block" ng-click="login()">
+    <button class="btn btn-lg btn-primary btn-block" ng-click="doLogin()">
       <span class="glyphicon glyphicon-log-in"></span>
       Sign in
     </button>
