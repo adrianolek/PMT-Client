@@ -6,14 +6,7 @@ angular.module('pmtClient.login', ['ngRoute', 'ngResource'])
     $routeProvider.when('/login', {templateUrl: 'login/login.html', controller: 'LoginCtrl'});
   }])
 
-  .factory('LoginResource', ['$resource',
-    function ($resource) {
-      return $resource('/api/token.json', {}, {
-        query: {method: 'POST'}
-      });
-    }])
-
-  .controller('LoginCtrl', ['$scope', 'LoginResource', function ($scope, LoginResource) {
+  .controller('LoginCtrl', ['$scope', 'ApiClient', function ($scope, ApiClient) {
     $scope.url = '';
     $scope.login = {
       username: '',
@@ -23,17 +16,22 @@ angular.module('pmtClient.login', ['ngRoute', 'ngResource'])
     $scope.doLogin = function () {
       if (!$scope.url.match(/^https?:\/\/.+/)) {
         $scope.info = '';
-        $scope.error = 'Url is invalid';
+        $scope.error = 'Url is invalid.';
       } else {
         $scope.info = 'Logging in...';
         $scope.error = '';
 
-        LoginResource.query($scope.login, function (user) {
+        ApiClient.setUrl($scope.url);
+        ApiClient.login().query($scope.login, function (user) {
+          $scope.info = 'Logged in.';
+          $scope.error = '';
+          ApiClient.setToken(user.token);
+        }, function (response) {
           $scope.info = '';
-          if (user.token) {
-            $scope.error = '';
-          } else {
+          if (response.status == 403) {
             $scope.error = 'Invalid username or password.'
+          } else {
+            $scope.error = 'The url does not seem to be a PMT app.'
           }
         });
       }
