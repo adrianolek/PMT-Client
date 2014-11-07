@@ -6,7 +6,7 @@ angular.module('pmtClient.login', ['ngRoute', 'ngResource'])
     $routeProvider.when('/login', {templateUrl: 'login/login.html', controller: 'LoginCtrl'});
   }])
 
-  .controller('LoginCtrl', ['$scope', 'ApiClient', function ($scope, ApiClient) {
+  .controller('LoginCtrl', ['$scope', 'ApiClient', '$location', function ($scope, ApiClient, $location) {
     $scope.url = '';
     $scope.login = {
       username: '',
@@ -26,6 +26,7 @@ angular.module('pmtClient.login', ['ngRoute', 'ngResource'])
           $scope.info = 'Logged in.';
           $scope.error = '';
           ApiClient.setToken(user.token);
+          $location.path('projects');
         }, function (response) {
           $scope.info = '';
           if (response.status == 403) {
