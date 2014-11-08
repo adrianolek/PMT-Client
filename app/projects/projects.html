@@ -1,1 +1,11 @@
-<h1>Projects</h1>
+<h3>Projects
+  <a ng-href="#/login" class="btn btn-default btn-sm">
+    <span class="glyphicon glyphicon-log-out"></span>
+  </a>
+</h3>
+
+<div class="list-group">
+  <a ng-href="#/project/{{ project.id }}/tasks" class="list-group-item" ng-repeat="project in projects">
+    {{ project.name }}
+  </a>
+</div>

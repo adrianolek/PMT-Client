@@ -21,9 +21,20 @@ angular.module('pmtClient.services', ['ngResource']).
       return this.token;
     };
 
+    this.forget = function () {
+      this.url = '';
+      this.token = '';
+    };
+
     this.login = function () {
       return $resource(this.getUrl() + '/api/token.json', {}, {
         query: {method: 'POST'}
       });
-    }
+    };
+
+    this.projects = function () {
+      return $resource(this.getUrl() + '/api/project.json', {}, {
+        query: {method: 'GET', headers: {'X-Auth-Token': this.getToken()}}
+      });
+    };
   }]);

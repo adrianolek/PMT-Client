@@ -7,6 +7,8 @@ angular.module('pmtClient.login', ['ngRoute', 'ngResource'])
   }])
 
   .controller('LoginCtrl', ['$scope', 'ApiClient', '$location', function ($scope, ApiClient, $location) {
+    ApiClient.forget();
+
     $scope.url = '';
     $scope.login = {
       username: '',
