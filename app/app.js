@@ -1,6 +1,10 @@
 'use strict';
 
-angular.module('pmtClient', ['ngRoute', 'pmtClient.login', 'pmtClient.services', 'pmtClient.projects'])
+angular.module('pmtClient', ['ngRoute',
+  'pmtClient.login',
+  'pmtClient.services',
+  'pmtClient.projects',
+  'pmtClient.tasks'])
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.otherwise({redirectTo: '/login'});
   }])
