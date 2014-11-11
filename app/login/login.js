@@ -8,6 +8,7 @@ angular.module('pmtClient.login', ['ngRoute', 'ngResource'])
 
   .controller('LoginCtrl', ['$scope', 'ApiClient', '$location', function ($scope, ApiClient, $location) {
     ApiClient.forget();
+    chrome.storage.local.remove('credentials');
 
     $scope.url = '';
     $scope.login = {
@@ -28,6 +29,9 @@ angular.module('pmtClient.login', ['ngRoute', 'ngResource'])
           $scope.info = 'Logged in.';
           $scope.error = '';
           ApiClient.setToken(user.token);
+          if ($scope.remember) {
+            chrome.storage.local.set({'credentials': {'token': user.token, 'url': $scope.url}});
+          }
           $location.path('projects');
         }, function (response) {
           $scope.info = '';

@@ -6,7 +6,21 @@ angular.module('pmtClient', ['ngRoute',
   'pmtClient.services',
   'pmtClient.projects',
   'pmtClient.tasks'])
+  .controller('StartCtrl', ['$scope', 'ApiClient', '$location', function ($scope, ApiClient, $location) {
+    chrome.storage.local.get('credentials', function(objects){
+      var credentials = objects.credentials;
+      if(credentials) {
+        ApiClient.setToken(credentials.token);
+        ApiClient.setUrl(credentials.url);
+      }
+
+      $scope.$apply(function(){
+        $location.path(ApiClient.hasCredentials() ? 'projects' : 'login');
+      });
+    });
+  }])
   .config(['$routeProvider', function ($routeProvider) {
+    $routeProvider.when('/', {template: ' ', controller: 'StartCtrl'});
     $routeProvider.otherwise({redirectTo: '/login'});
   }])
   .config(['$compileProvider', function ($compileProvider) {

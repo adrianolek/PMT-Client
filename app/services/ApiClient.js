@@ -26,6 +26,10 @@ angular.module('pmtClient.services', ['ngResource']).
       this.token = '';
     };
 
+    this.hasCredentials = function () {
+      return this.url && this.token;
+    }
+
     this.login = function () {
       return $resource(this.getUrl() + '/api/token.json', {}, {
         query: {method: 'POST'}
