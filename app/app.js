@@ -26,6 +26,18 @@ angular.module('pmtClient', ['ngRoute',
   .config(['$compileProvider', function ($compileProvider) {
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|chrome-extension):/);
   }])
+  .config(['$httpProvider', function ($httpProvider) {
+    $httpProvider.interceptors.push(['$location', function ($location) {
+      return {
+        'responseError': function (response) {
+          if (response.status == 403) {
+            $location.path('login');
+          }
+          return response;
+        }
+      };
+    }]);
+  }])
   .filter('html', function () {
     return function (value) {
       if (angular.isString(value)) {
