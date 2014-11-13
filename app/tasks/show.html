@@ -3,3 +3,9 @@
 <div class="well">
   <blockquote ng-bind-html="task.description|html|nl2br"></blockquote>
 </div>
+
+<div class="form-group">
+  <label for="description">Work description:</label>
+  <textarea id="description" class="form-control" rows="3" ng-model="description"></textarea>
+</div>
+<a ng-click="finish()" class="btn btn-primary">Finish work</a>

@@ -14,9 +14,14 @@ angular.module('pmtClient.tasks', ['ngRoute', 'ngResource'])
     });
   }])
 
-  .controller('ShowCtrl', ['$scope', 'ApiClient', '$routeParams', function ($scope, ApiClient, $routeParams) {
+  .controller('ShowCtrl', ['$scope', 'ApiClient', '$routeParams', '$location',
+    function ($scope, ApiClient, $routeParams, $location) {
     ApiClient.tasks().get($routeParams, function (res) {
       $scope.project = res.project;
       $scope.task = res.task;
     });
+
+    $scope.finish = function () {
+      $location.path('project/' + $scope.project.id + '/tasks');
+    };
   }]);
