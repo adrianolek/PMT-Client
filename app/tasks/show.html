@@ -8,4 +8,9 @@
   <label for="description">Work description:</label>
   <textarea id="description" class="form-control" rows="3" ng-model="description"></textarea>
 </div>
+<div class="checkbox">
+  <label>
+    <input type="checkbox" ng-model="complete">Mark as completed
+  </label>
+</div>
 <a ng-click="finish()" class="btn btn-primary">Finish work</a>
