@@ -1,0 +1,9 @@
+<h3>Estimate {{ task.name }}</h3>
+<p>Please estimate time before starting work.</p>
+<form role="form">
+  <div class="form-group">
+    <label for="estimate" class="control-label">Time (h):</label>
+    <input type="number" min="0" id="estimate" class="form-control" ng-model="estimate"/>
+  </div>
+  <a ng-click="save()" class="btn btn-primary">Save & continue</a>
+</form>
