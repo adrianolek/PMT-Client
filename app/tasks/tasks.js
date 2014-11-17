@@ -37,11 +37,14 @@ angular.module('pmtClient.tasks', ['ngRoute', 'ngResource'])
       $scope.project = res.project;
       $scope.task = res.task;
       $scope.estimate = res.task.estimatedTime;
-    });
 
-    $scope.save = function () {
-      if ($scope.estimate > 0) {
-        $location.path('project/' + $routeParams.projectId + '/task/' + $routeParams.taskId);
-      }
-    };
+      $scope.save = function () {
+        if ($scope.estimate > 0) {
+          res.time = $scope.estimate;
+          res.$estimate({taskId: $scope.task.id}, function () {
+            $location.path('project/' + $routeParams.projectId + '/task/' + $routeParams.taskId);
+          });
+        }
+      };
+    });
   }]);

@@ -45,7 +45,10 @@ angular.module('pmtClient.services', ['ngResource']).
     this.tasks = function () {
       return $resource(this.getUrl() + '/api/project/:projectId/task/:taskId.json', {}, {
         query: {method: 'GET', headers: {'X-Auth-Token': this.getToken()}},
-        get: {method: 'GET', headers: {'X-Auth-Token': this.getToken()}}
+        get: {method: 'GET', headers: {'X-Auth-Token': this.getToken()}},
+        estimate: { method: 'POST',
+          url: this.getUrl() + '/api/task/:taskId/estimate.json',
+          headers: { 'X-Auth-Token': this.getToken() }}
       });
     };
   }]);
