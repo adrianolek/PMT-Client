@@ -1,6 +1,9 @@
 <span class="badge pull-right">{{ status }}</span>
 <h3>Estimate {{ task.name }}</h3>
 <p>Please estimate time before starting work.</p>
+<div class="well">
+  <blockquote ng-bind-html="task.description|html|nl2br"></blockquote>
+</div>
 <form role="form">
   <div class="form-group">
     <label for="estimate" class="control-label">Time (h):</label>
