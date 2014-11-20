@@ -27,13 +27,13 @@ angular.module('pmtClient', ['ngRoute',
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|chrome-extension):/);
   }])
   .config(['$httpProvider', function ($httpProvider) {
-    $httpProvider.interceptors.push(['$location', function ($location) {
+    $httpProvider.interceptors.push(['$location', '$q', function ($location, $q) {
       return {
-        'responseError': function (response) {
-          if (response.status == 403) {
+        'responseError': function (rejection) {
+          if (rejection.status == 403) {
             $location.path('login');
           }
-          return response;
+          return $q.reject(rejection);
         }
       };
     }]);
