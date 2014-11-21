@@ -1,5 +1,9 @@
 <span class="badge pull-right">{{ status }}</span>
 <h3>{{ project.name }}
+  <a ng-click="refresh()" class="btn btn-default btn-sm">
+    <span class="glyphicon glyphicon-refresh"></span>
+    Refresh
+  </a>
   <a ng-href="#/projects" class="btn btn-default btn-sm">
     <span class="glyphicon glyphicon-list"></span>
     Projects

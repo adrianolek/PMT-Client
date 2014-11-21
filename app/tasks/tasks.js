@@ -9,10 +9,14 @@ angular.module('pmtClient.tasks', ['ngRoute', 'ngResource'])
   }])
 
   .controller('IndexCtrl', ['$scope', 'ApiClient', '$routeParams', function ($scope, ApiClient, $routeParams) {
-    ApiClient.tasks().query($routeParams, function (res) {
-      $scope.project = res.project;
-      $scope.tasks = res.tasks;
-    });
+    $scope.refresh = function(){
+      ApiClient.tasks().query($routeParams, function (res) {
+        $scope.project = res.project;
+        $scope.tasks = res.tasks;
+      });
+    };
+
+    $scope.refresh();
   }])
 
   .controller('ShowCtrl', ['$scope', 'ApiClient', '$routeParams', '$location',
