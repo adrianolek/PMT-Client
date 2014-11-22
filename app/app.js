@@ -2,11 +2,12 @@
 
 angular.module('pmtClient', ['ngRoute',
   'ngSanitize',
+  'pmtClient.api',
+  'pmtClient.tracker',
   'pmtClient.login',
-  'pmtClient.services',
   'pmtClient.projects',
   'pmtClient.tasks'])
-  .controller('StartCtrl', ['$scope', 'ApiClient', '$location', function ($scope, ApiClient, $location) {
+  .controller('StartCtrl', ['$scope', 'ApiClient', '$location', 'Tracker', function ($scope, ApiClient, $location, Tracker) {
     chrome.storage.local.get('credentials', function(objects){
       var credentials = objects.credentials;
       if(credentials) {

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('pmtClient.services', ['ngResource']).
+angular.module('pmtClient.api', ['ngResource']).
   service('ApiClient', ['$resource', function ($resource) {
     this.url = '';
     this.token = '';
