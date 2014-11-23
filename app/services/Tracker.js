@@ -2,10 +2,12 @@
 
 angular.module('pmtClient.tracker', []).
   service('Tracker', ['$interval', '$rootScope', 'ApiClient', function ($interval, $rootScope, ApiClient) {
-    var time = -10;
+    this.time = -10;
 
-    $interval(function(){
-      time += 1;
-      $rootScope.status = time;
-    }, 1000);
+    this.tick = function () {
+      this.time += 1;
+      $rootScope.status = this.time;
+    };
+
+    $interval(this.tick.bind(this), 1000);
   }]);
