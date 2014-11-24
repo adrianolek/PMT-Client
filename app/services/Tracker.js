@@ -6,7 +6,13 @@ angular.module('pmtClient.tracker', []).
 
     this.tick = function () {
       this.time += 1;
-      $rootScope.status = this.time;
+
+      if (this.time < 0) {
+        $rootScope.status = 'Waiting: ' + Math.abs(this.time);
+      } else {
+        $rootScope.status = 'Idle: ' + this.time;
+      }
+
     };
 
     $interval(this.tick.bind(this), 1000);
