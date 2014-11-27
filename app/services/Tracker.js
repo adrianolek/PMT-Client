@@ -3,6 +3,7 @@
 angular.module('pmtClient.tracker', []).
   service('Tracker', ['$interval', '$rootScope', 'ApiClient', function ($interval, $rootScope, ApiClient) {
     this.time = -10;
+    this.taskId = null;
 
     this.tick = function () {
       this.time += 1;
@@ -17,6 +18,18 @@ angular.module('pmtClient.tracker', []).
         $rootScope.status = 'Idle: ' + sprintf('%02d:%02d:%02d', hours, minutes, seconds);
       }
 
+    };
+
+    this.idle = function () {
+      if (this.taskId) {
+        this.taskId = null;
+        this.time = -10;
+      }
+    };
+
+    this.task = function (id) {
+      this.taskId = id;
+      this.time = -10;
     };
 
     $interval(this.tick.bind(this), 1000);
