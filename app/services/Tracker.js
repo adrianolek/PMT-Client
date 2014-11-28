@@ -15,7 +15,8 @@ angular.module('pmtClient.tracker', []).
         var minutes = Math.floor((this.time - hours * 3600) / 60);
         var seconds = this.time - hours * 3600 - minutes * 60;
 
-        $rootScope.status = 'Idle: ' + sprintf('%02d:%02d:%02d', hours, minutes, seconds);
+        var description = this.taskId ? 'Working: ' : 'Idle: ';
+        $rootScope.status = description + sprintf('%02d:%02d:%02d', hours, minutes, seconds);
       }
 
     };
