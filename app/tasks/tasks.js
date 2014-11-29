@@ -8,7 +8,9 @@ angular.module('pmtClient.tasks', ['ngRoute', 'ngResource'])
     $routeProvider.when('/project/:projectId/task/:taskId/estimate', {templateUrl: 'tasks/estimate.html', controller: 'EstimateCtrl'});
   }])
 
-  .controller('IndexCtrl', ['$scope', 'ApiClient', '$routeParams', function ($scope, ApiClient, $routeParams) {
+  .controller('IndexCtrl', ['$scope', 'ApiClient', '$routeParams', 'Tracker',
+    function ($scope, ApiClient, $routeParams, Tracker) {
+    Tracker.idle();
     $scope.refresh = function(){
       ApiClient.tasks().query($routeParams, function (res) {
         $scope.project = res.project;
@@ -19,14 +21,15 @@ angular.module('pmtClient.tasks', ['ngRoute', 'ngResource'])
     $scope.refresh();
   }])
 
-  .controller('ShowCtrl', ['$scope', 'ApiClient', '$routeParams', '$location',
-    function ($scope, ApiClient, $routeParams, $location) {
+  .controller('ShowCtrl', ['$scope', 'ApiClient', '$routeParams', '$location', 'Tracker',
+    function ($scope, ApiClient, $routeParams, $location, Tracker) {
     ApiClient.tasks().get($routeParams, function (res) {
       if (res.task.estimatedTime == 0) {
         $location.path('project/' + $routeParams.projectId + '/task/' + $routeParams.taskId + '/estimate');
         return;
       }
 
+      Tracker.task($routeParams.taskId);
       $scope.project = res.project;
       $scope.task = res.task;
     });
@@ -35,8 +38,9 @@ angular.module('pmtClient.tasks', ['ngRoute', 'ngResource'])
       $location.path('project/' + $scope.project.id + '/tasks');
     };
   }])
-  .controller('EstimateCtrl', ['$scope', '$routeParams', '$location', 'ApiClient',
-    function ($scope, $routeParams, $location, ApiClient) {
+  .controller('EstimateCtrl', ['$scope', '$routeParams', '$location', 'ApiClient', 'Tracker',
+    function ($scope, $routeParams, $location, ApiClient, Tracker) {
+    Tracker.idle();
     ApiClient.tasks().get($routeParams, function (res) {
       $scope.project = res.project;
       $scope.task = res.task;
