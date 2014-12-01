@@ -51,4 +51,10 @@ angular.module('pmtClient.api', ['ngResource']).
           headers: { 'X-Auth-Token': this.getToken() }}
       });
     };
+
+    this.track = function () {
+      return $resource(this.getUrl() + '/api/tracking/:id.json', {}, {
+        save: { method: 'POST', headers: { 'X-Auth-Token': this.getToken() } }
+      });
+    }
   }]);
