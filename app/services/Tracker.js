@@ -4,6 +4,7 @@ angular.module('pmtClient.tracker', []).
   service('Tracker', ['$interval', '$rootScope', 'ApiClient', function ($interval, $rootScope, ApiClient) {
     this.time = -10;
     this.taskId = null;
+    this.track = null;
 
     this.tick = function () {
       this.time += 1;
@@ -29,12 +30,14 @@ angular.module('pmtClient.tracker', []).
       if (this.taskId) {
         this.taskId = null;
         this.time = -10;
+        this.track = new ApiClient.track();
       }
     };
 
     this.task = function (id) {
       this.taskId = id;
       this.time = -10;
+      this.track = new ApiClient.track({taskId: id});
     };
 
     $interval(this.tick.bind(this), 1000);
