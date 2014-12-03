@@ -26,6 +26,12 @@ angular.module('pmtClient.tracker', []).
 
     };
 
+    this.save = function () {
+      if (this.track) {
+        this.track.$save();
+      }
+    };
+
     this.idle = function () {
       if (this.taskId) {
         this.taskId = null;
