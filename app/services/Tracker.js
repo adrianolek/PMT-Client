@@ -24,6 +24,9 @@ angular.module('pmtClient.tracker', []).
         $rootScope.status = description + sprintf('%02d:%02d:%02d', hours, minutes, seconds);
       }
 
+      if (this.time % 10 == 0) {
+        this.save();
+      }
     };
 
     this.save = function () {
