@@ -29,9 +29,10 @@ angular.module('pmtClient.tracker', []).
       }
     };
 
-    this.save = function () {
+    this.save = function (complete) {
       if (this.track) {
-        this.track.$save();
+        var params = complete ? {complete: 1} : {};
+        this.track.$save(params);
       }
     };
 
