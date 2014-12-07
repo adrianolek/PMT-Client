@@ -53,7 +53,7 @@ angular.module('pmtClient.api', ['ngResource']).
     };
 
     this.track = function () {
-      return $resource(this.getUrl() + '/api/tracking/:id.json', {}, {
+      return $resource(this.getUrl() + '/api/tracking/:trackId.json', {trackId: '@id'}, {
         save: { method: 'POST', headers: { 'X-Auth-Token': this.getToken() } }
       });
     }
