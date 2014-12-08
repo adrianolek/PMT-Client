@@ -37,6 +37,12 @@ angular.module('pmtClient.tracker', []).
       }
     };
 
+    this.stop = function () {
+      this.taskId = null;
+      this.isIdle = false;
+      this.track = null;
+    };
+
     this.idle = function () {
       if (!this.isIdle) {
         this.isIdle = true;
