@@ -6,7 +6,9 @@ angular.module('pmtClient.login', ['ngRoute', 'ngResource'])
     $routeProvider.when('/login', {templateUrl: 'login/login.html', controller: 'LoginCtrl'});
   }])
 
-  .controller('LoginCtrl', ['$scope', 'ApiClient', '$location', function ($scope, ApiClient, $location) {
+  .controller('LoginCtrl', ['$scope', 'ApiClient', '$location', 'Tracker',
+    function ($scope, ApiClient, $location, Tracker) {
+    Tracker.stop();
     ApiClient.forget();
     chrome.storage.local.remove('credentials');
 
