@@ -43,22 +43,22 @@ angular.module('pmtClient.tracker', []).
       this.track = null;
     };
 
+    this.newTrack = function (id) {
+      this.time = -10;
+      this.taskId = id;
+      this.isIdle = !!id;
+      var Track = ApiClient.track();
+      this.track = new Track({taskId: id});
+    };
+
     this.idle = function () {
       if (!this.isIdle) {
-        this.isIdle = true;
-        this.taskId = null;
-        this.time = -10;
-        var Track = ApiClient.track();
-        this.track = new Track;
+        this.newTrack()
       }
     };
 
     this.task = function (id) {
-      this.isIdle = false;
-      this.taskId = id;
-      this.time = -10;
-      var Track = ApiClient.track();
-      this.track = new Track({taskId: id});
+      this.newTrack(id);
     };
 
     $interval(this.tick.bind(this), 1000);
