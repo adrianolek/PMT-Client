@@ -34,6 +34,10 @@ angular.module('pmtClient.tasks', ['ngRoute', 'ngResource'])
       $scope.task = res.task;
     });
 
+    $scope.$watch('description', function(value){
+      Tracker.setDescription(value);
+    });
+
     $scope.finish = function () {
       $location.path('project/' + $scope.project.id + '/tasks');
     };

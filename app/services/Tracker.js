@@ -6,6 +6,7 @@ angular.module('pmtClient.tracker', []).
     this.taskId = null;
     this.isIdle = false;
     this.track = null;
+    this.description = '';
 
     this.tick = function () {
       this.time += 1;
@@ -28,6 +29,10 @@ angular.module('pmtClient.tracker', []).
       if (this.time % 10 == 0) {
         this.save();
       }
+    };
+
+    this.setDescription = function (value) {
+      this.description = value;
     };
 
     this.save = function (complete) {
