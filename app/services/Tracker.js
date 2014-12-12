@@ -37,6 +37,7 @@ angular.module('pmtClient.tracker', []).
 
     this.save = function (complete) {
       if (this.track) {
+        this.track.description = this.description;
         var params = complete ? {complete: 1} : {};
         this.track.$save(params);
       }
