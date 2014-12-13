@@ -39,6 +39,7 @@ angular.module('pmtClient.tasks', ['ngRoute', 'ngResource'])
     });
 
     $scope.finish = function () {
+      Tracker.save($scope.complete);
       $location.path('project/' + $scope.project.id + '/tasks');
     };
   }])
