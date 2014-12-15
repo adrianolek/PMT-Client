@@ -47,12 +47,14 @@ angular.module('pmtClient.tracker', []).
       this.taskId = null;
       this.isIdle = false;
       this.track = null;
+      this.description = '';
     };
 
     this.newTrack = function (id) {
       this.time = -10;
       this.taskId = id;
       this.isIdle = !id;
+      this.description = '';
       var Track = ApiClient.track();
       this.track = new Track({taskId: id});
     };
