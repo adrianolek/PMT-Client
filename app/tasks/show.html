@@ -5,9 +5,10 @@
   <blockquote ng-bind-html="task.description|html|nl2br"></blockquote>
 </div>
 
-<div class="form-group">
+<div class="form-group" ng-class="{'has-error': error}">
   <label for="description">Work description:</label>
   <textarea id="description" class="form-control" rows="3" ng-model="description"></textarea>
+  <span ng-if="error" class="help-block">At least 5 words of description are needed.</span>
 </div>
 <div class="checkbox">
   <label>

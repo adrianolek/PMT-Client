@@ -8,6 +8,20 @@ angular.module('pmtClient.tracker', []).
     this.track = null;
     this.description = '';
 
+    this.getTime = function () {
+      return this.time;
+    };
+
+    this.isDescriptionValid = function() {
+      return this.description
+        .replace(/[^\w]/g, ' ')
+        .replace(/\b\w\b/g, '')
+        .replace(/\s+/g, ' ')
+        .trim()
+        .split(' ')
+        .length > 4;
+    };
+
     this.tick = function () {
       this.time += 1;
 

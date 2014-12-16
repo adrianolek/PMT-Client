@@ -39,6 +39,11 @@ angular.module('pmtClient.tasks', ['ngRoute', 'ngResource'])
     });
 
     $scope.finish = function () {
+      if(Tracker.getTime() > 60 && !Tracker.isDescriptionValid()) {
+        $scope.error = true;
+        return;
+      }
+
       Tracker.save($scope.complete);
       $location.path('project/' + $scope.project.id + '/tasks');
     };
