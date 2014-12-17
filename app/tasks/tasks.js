@@ -62,6 +62,8 @@ angular.module('pmtClient.tasks', ['ngRoute', 'ngResource'])
           res.$estimate({taskId: $scope.task.id}, function () {
             $location.path('project/' + $routeParams.projectId + '/task/' + $routeParams.taskId);
           });
+        } else {
+          $scope.error = true;
         }
       };
     });

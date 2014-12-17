@@ -5,9 +5,10 @@
   <blockquote ng-bind-html="task.description|html|nl2br"></blockquote>
 </div>
 <form role="form">
-  <div class="form-group">
+  <div class="form-group" ng-class="{'has-error': error}">
     <label for="estimate" class="control-label">Time (h):</label>
     <input type="number" min="0" id="estimate" class="form-control" ng-model="estimate"/>
+    <span ng-if="error" class="help-block">Estimation has to be at least 1h.</span>
   </div>
   <a ng-click="save()" class="btn btn-primary">Save & continue</a>
   <a ng-href="#/project/{{ project.id }}/tasks" class="btn btn-default">Cancel</a>
