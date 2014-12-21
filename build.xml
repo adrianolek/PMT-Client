@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="pmt-client">
+  <property name="src" location="."/>
+  <property name="build" location="build"/>
+  <property name="dist"  location="dist"/>
+
+  <target name="compile">
+    <mkdir dir="${build}"/>
+    <copy todir="${build}/app">
+      <fileset dir="${src}/app" excludes="bower_components/**"/>
+    </copy>
+    <copy todir="${build}">
+      <fileset dir="${src}" includes=".bowerrc background.js bower.json icon-16.png icon-128.png manifest.json"/>
+    </copy>
+    <exec dir="${build}" executable="${src}/node_modules/bower/bin/bower">
+      <arg value="install"/>
+    </exec>
+    <delete includeemptydirs="true">
+      <fileset dir="${build}/app/bower_components" defaultexcludes="no">
+        <include name="**/*"/>
+        <exclude name="jquery/dist/jquery.js"/>
+        <exclude name="bootstrap/dist/js/bootstrap.js"/>
+        <exclude name="sprintf/dist/sprintf.min.js"/>
+        <exclude name="angular/angular.js"/>
+        <exclude name="angular-route/angular-route.js"/>
+        <exclude name="angular-resource/angular-resource.js"/>
+        <exclude name="angular-sanitize/angular-sanitize.js"/>
+      </fileset>
+      <fileset dir="${build}" includes=".bowerrc bower.json"/>
+    </delete>
+  </target>
+
+  <target name="dist" depends="compile">
+    <mkdir dir="${dist}"/>
+    <zip destfile="${dist}/pmt-client.zip" basedir="${build}"/>
+  </target>
+
+  <target name="clean">
+    <delete dir="${build}"/>
+    <delete dir="${dist}"/>
+  </target>
+</project>
