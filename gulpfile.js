@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var bower = require('gulp-bower');
+var del = require('del');
 
 gulp.task('copy', function () {
   gulp.src(['**', '!bower_components/**'], {cwd: 'app', nodir: true})
@@ -11,4 +12,8 @@ gulp.task('copy', function () {
 
 gulp.task('bower', function() {
   return bower({ cwd: 'build' });
+});
+
+gulp.task('clean', function () {
+  del(['build', 'dist']);
 });
