@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var bower = require('gulp-bower');
 var del = require('del');
+var zip = require('gulp-zip');
 
 gulp.task('copy', function () {
   gulp.src(['**', '!bower_components/**'], {cwd: 'app', nodir: true})
@@ -16,4 +17,10 @@ gulp.task('bower', function() {
 
 gulp.task('clean', function () {
   del(['build', 'dist']);
+});
+
+gulp.task('zip', function () {
+  return gulp.src('build/**')
+    .pipe(zip('pmt-client.zip'))
+    .pipe(gulp.dest('dist'));
 });
