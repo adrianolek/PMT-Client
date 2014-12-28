@@ -4,6 +4,7 @@
     "gulp": "~3.8",
     "gulp-bower": "0.0.7",
     "del": "~1.1.1",
-    "gulp-zip": "~2.0.2"
+    "gulp-zip": "~2.0.2",
+    "gulp-useref": "~1.0.2"
   }
 }
