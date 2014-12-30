@@ -5,6 +5,7 @@ var zip = require('gulp-zip');
 var useref = require('gulp-useref');
 var gulpif = require('gulp-if');
 var uglify = require('gulp-uglify');
+var minifyCss = require('gulp-minify-css');
 
 gulp.task('copy', function () {
   gulp.src(['**', '!bower_components/**'], {cwd: 'app', nodir: true})
@@ -34,6 +35,7 @@ gulp.task('assets', function () {
   gulp.src('build/app/index.html')
     .pipe(assets)
     .pipe(gulpif('*.js', uglify()))
+    .pipe(gulpif('*.css', minifyCss({keepSpecialComments: false})))
     .pipe(assets.restore())
     .pipe(useref())
     .pipe(gulp.dest('build/app'));
