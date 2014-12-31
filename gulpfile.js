@@ -35,8 +35,11 @@ gulp.task('assets', function () {
   gulp.src('build/app/index.html')
     .pipe(assets)
     .pipe(gulpif('*.js', uglify()))
-    .pipe(gulpif('*.css', minifyCss({keepSpecialComments: false})))
+    .pipe(gulpif('*.css', minifyCss({keepSpecialComments: 0})))
     .pipe(assets.restore())
     .pipe(useref())
     .pipe(gulp.dest('build/app'));
+
+  gulp.src('build/app/bower_components/bootstrap/fonts/*')
+    .pipe(gulp.dest('build/app/fonts'));
 });
