@@ -40,6 +40,20 @@ gulp.task('assets', function () {
     .pipe(useref())
     .pipe(gulp.dest('build/app'));
 
+  gulp.src('build/background.js')
+    .pipe(uglify())
+    .pipe(gulp.dest('build'));
+
   gulp.src('build/app/bower_components/bootstrap/fonts/*')
     .pipe(gulp.dest('build/app/fonts'));
+});
+
+gulp.task('cleanup', function () {
+  del(['build/app/bower_components',
+    'build/app/css/app.css',
+    'build/.bowerrc',
+    'build/bower.json',
+    'build/app/**/**.js',
+    'build/app/services',
+    '!build/app/js/all.js']);
 });
