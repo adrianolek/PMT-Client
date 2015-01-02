@@ -6,6 +6,7 @@ var useref = require('gulp-useref');
 var gulpif = require('gulp-if');
 var uglify = require('gulp-uglify');
 var minifyCss = require('gulp-minify-css');
+var minifyHTML = require('gulp-minify-html');
 
 gulp.task('copy', function () {
   gulp.src(['**', '!bower_components/**'], {cwd: 'app', nodir: true})
@@ -48,12 +49,18 @@ gulp.task('assets', function () {
     .pipe(gulp.dest('build/app/fonts'));
 });
 
+gulp.task('minify-html', function() {
+  gulp.src('build/app/**/*.html')
+    .pipe(minifyHTML({empty: true}))
+    .pipe(gulp.dest('build/app'))
+});
+
 gulp.task('cleanup', function () {
   del(['build/app/bower_components',
     'build/app/css/app.css',
     'build/.bowerrc',
     'build/bower.json',
-    'build/app/**/**.js',
+    'build/app/**/*.js',
     'build/app/services',
     '!build/app/js/all.js']);
 });
