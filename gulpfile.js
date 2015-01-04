@@ -20,14 +20,8 @@ gulp.task('bower', function() {
   return bower({ cwd: 'build' });
 });
 
-gulp.task('clean', function () {
-  return del(['build', 'dist']);
-});
-
-gulp.task('zip', function () {
-  return gulp.src('build/**')
-    .pipe(zip('pmt-client.zip'))
-    .pipe(gulp.dest('dist'));
+gulp.task('clean', function (cb) {
+  return del(['build', 'dist'], cb);
 });
 
 gulp.task('assets-useref', function(){
@@ -61,16 +55,22 @@ gulp.task('minify-html', function() {
     .pipe(gulp.dest('build/app'))
 });
 
-gulp.task('cleanup', function () {
+gulp.task('cleanup', function (cb) {
   return del(['build/app/bower_components',
     'build/app/css/app.css',
     'build/.bowerrc',
     'build/bower.json',
     'build/app/**/*.js',
     'build/app/services',
-    '!build/app/js/all.js']);
+    '!build/app/js/all.js'], cb);
 });
 
-gulp.task('build', function() {
-  runSequence('clean', 'copy', 'bower', 'assets', ['minify-html', 'cleanup']);
+gulp.task('build', function(cb) {
+  runSequence('clean', 'copy', 'bower', 'assets', ['minify-html', 'cleanup'], cb);
+});
+
+gulp.task('dist', ['build'], function () {
+  return gulp.src('build/**')
+    .pipe(zip('pmt-client.zip'))
+    .pipe(gulp.dest('dist'));
 });
