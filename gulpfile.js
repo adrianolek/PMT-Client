@@ -1,12 +1,6 @@
 var gulp = require('gulp');
-var bower = require('gulp-bower');
+var g = require('gulp-load-plugins')();
 var del = require('del');
-var zip = require('gulp-zip');
-var useref = require('gulp-useref');
-var gulpif = require('gulp-if');
-var uglify = require('gulp-uglify');
-var minifyCss = require('gulp-minify-css');
-var minifyHTML = require('gulp-minify-html');
 var runSequence = require('run-sequence');
 
 gulp.task('copy', function () {
@@ -17,7 +11,7 @@ gulp.task('copy', function () {
 });
 
 gulp.task('bower', function() {
-  return bower({ cwd: 'build' });
+  return g.bower({ cwd: 'build' });
 });
 
 gulp.task('clean', function (cb) {
@@ -25,20 +19,20 @@ gulp.task('clean', function (cb) {
 });
 
 gulp.task('assets-useref', function(){
-  var assets = useref.assets();
+  var assets = g.useref.assets();
 
   return gulp.src('build/app/index.html')
     .pipe(assets)
-    .pipe(gulpif('*.js', uglify()))
-    .pipe(gulpif('*.css', minifyCss({keepSpecialComments: 0})))
+    .pipe(g.if('*.js', g.uglify()))
+    .pipe(g.if('*.css', g.minifyCss({keepSpecialComments: 0})))
     .pipe(assets.restore())
-    .pipe(useref())
+    .pipe(g.useref())
     .pipe(gulp.dest('build/app'));
 });
 
 gulp.task('assets-uglify', function(){
   return gulp.src('build/background.js')
-    .pipe(uglify())
+    .pipe(g.uglify())
     .pipe(gulp.dest('build'));
 });
 
@@ -51,7 +45,7 @@ gulp.task('assets', ['assets-useref', 'assets-uglify', 'assets-fonts']);
 
 gulp.task('minify-html', function() {
   return gulp.src(['build/app/**/*.html', '!build/app/bower_components/**'])
-    .pipe(minifyHTML({empty: true}))
+    .pipe(g.minifyHtml({empty: true}))
     .pipe(gulp.dest('build/app'))
 });
 
@@ -71,6 +65,6 @@ gulp.task('build', function(cb) {
 
 gulp.task('dist', ['build'], function () {
   return gulp.src('build/**')
-    .pipe(zip('pmt-client.zip'))
+    .pipe(g.zip('pmt-client.zip'))
     .pipe(gulp.dest('dist'));
 });
