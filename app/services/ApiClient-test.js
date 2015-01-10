@@ -7,4 +7,9 @@ describe('API Client', function() {
     ApiClient.setUrl('foo');
     expect(ApiClient.getUrl()).toBe('foo');
   }));
+
+  it('token should be set',  inject(function(ApiClient) {
+    ApiClient.setToken('foo');
+    expect(ApiClient.getToken()).toBe('foo');
+  }));
 });
