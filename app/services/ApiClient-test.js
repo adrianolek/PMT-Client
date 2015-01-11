@@ -12,4 +12,12 @@ describe('API Client', function() {
     ApiClient.setToken('foo');
     expect(ApiClient.getToken()).toBe('foo');
   }));
+
+  it('url and token should be forgotten',  inject(function(ApiClient) {
+    ApiClient.setUrl('foo');
+    ApiClient.setToken('foo');
+    ApiClient.forget();
+    expect(ApiClient.getUrl()).toBe('');
+    expect(ApiClient.getToken()).toBe('');
+  }));
 });
