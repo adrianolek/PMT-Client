@@ -20,4 +20,8 @@ describe('API Client', function() {
     expect(ApiClient.getUrl()).toBe('');
     expect(ApiClient.getToken()).toBe('');
   }));
+
+  it('should not have credentials',  inject(function(ApiClient) {
+    expect(ApiClient.hasCredentials()).toBeFalsy();
+  }));
 });
