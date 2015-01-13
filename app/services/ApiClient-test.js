@@ -24,4 +24,10 @@ describe('API Client', function() {
   it('should not have credentials',  inject(function(ApiClient) {
     expect(ApiClient.hasCredentials()).toBeFalsy();
   }));
+
+  it('should have credentials',  inject(function(ApiClient) {
+    ApiClient.setUrl('foo');
+    ApiClient.setToken('foo');
+    expect(ApiClient.hasCredentials()).toBeTruthy();
+  }));
 });
