@@ -30,4 +30,9 @@ describe('API Client', function() {
     ApiClient.setToken('foo');
     expect(ApiClient.hasCredentials()).toBeTruthy();
   }));
+
+  it('should have login resource',  inject(function(ApiClient) {
+    var login = ApiClient.login();
+    expect(login.query).toBeDefined();
+  }));
 });
