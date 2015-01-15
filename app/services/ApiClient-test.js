@@ -35,4 +35,9 @@ describe('API Client', function() {
     var login = ApiClient.login();
     expect(login.query).toBeDefined();
   }));
+
+  it('should have projects resource',  inject(function(ApiClient) {
+    var projects = ApiClient.projects();
+    expect(projects.query).toBeDefined();
+  }));
 });
