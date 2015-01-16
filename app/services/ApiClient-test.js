@@ -40,4 +40,11 @@ describe('API Client', function() {
     var projects = ApiClient.projects();
     expect(projects.query).toBeDefined();
   }));
+
+  it('should have tasks resource',  inject(function(ApiClient) {
+    var tasks = ApiClient.tasks();
+    expect(tasks.query).toBeDefined();
+    expect(tasks.get).toBeDefined();
+    expect(tasks.estimate).toBeDefined();
+  }));
 });
