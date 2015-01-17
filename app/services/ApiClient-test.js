@@ -47,4 +47,9 @@ describe('API Client', function() {
     expect(tasks.get).toBeDefined();
     expect(tasks.estimate).toBeDefined();
   }));
+
+  it('should have track resource',  inject(function(ApiClient) {
+    var track = ApiClient.track();
+    expect(track.save).toBeDefined();
+  }));
 });
