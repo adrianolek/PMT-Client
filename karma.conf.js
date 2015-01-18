@@ -10,7 +10,10 @@ module.exports = function(config) {
       'app/+(login|projects|services|tasks)/*.js'
     ],
     exclude: [],
-    reporters: ['progress'],
+    reporters: ['progress', 'coverage'],
+    preprocessors: {
+      'app/+(login|projects|services|tasks)/*.js': ['coverage']
+    },
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
