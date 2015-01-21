@@ -8,4 +8,8 @@ describe('Tracker', function() {
       $provide.value('ApiClient', {});
     });
   });
+
+  it('time should be negative',  inject(function(Tracker) {
+    expect(Tracker.getTime()).toBe(-10);
+  }));
 });
