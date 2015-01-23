@@ -17,4 +17,9 @@ describe('Tracker', function() {
     Tracker.setDescription('foo');
     expect(Tracker.description).toBe('foo');
   }));
+
+  it('description should be valid',  inject(function(Tracker) {
+    Tracker.setDescription('foo bar baz bar foo');
+    expect(Tracker.isDescriptionValid()).toBe(true);
+  }));
 });
