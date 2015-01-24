@@ -22,4 +22,9 @@ describe('Tracker', function() {
     Tracker.setDescription('foo bar baz bar foo');
     expect(Tracker.isDescriptionValid()).toBe(true);
   }));
+
+  it('description should be invalid',  inject(function(Tracker) {
+    Tracker.setDescription('foo bar baz');
+    expect(Tracker.isDescriptionValid()).toBe(false);
+  }));
 });
