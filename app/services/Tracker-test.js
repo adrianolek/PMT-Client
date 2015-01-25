@@ -27,4 +27,9 @@ describe('Tracker', function() {
     Tracker.setDescription('foo bar baz');
     expect(Tracker.isDescriptionValid()).toBe(false);
   }));
+
+  it('time should advance',  inject(function(Tracker) {
+    Tracker.tick();
+    expect(Tracker.getTime()).toBe(-9);
+  }));
 });
