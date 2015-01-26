@@ -32,4 +32,9 @@ describe('Tracker', function() {
     Tracker.tick();
     expect(Tracker.getTime()).toBe(-9);
   }));
+
+  it('status should be waiting',  inject(function(Tracker, $rootScope) {
+    Tracker.tick();
+    expect($rootScope.status).toBe('Waiting: 9');
+  }));
 });
