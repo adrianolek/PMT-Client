@@ -37,4 +37,10 @@ describe('Tracker', function() {
     Tracker.tick();
     expect($rootScope.status).toBe('Waiting: 9');
   }));
+
+  it('time should be 10',  inject(function(Tracker) {
+    Tracker.time = -1;
+    Tracker.tick();
+    expect(Tracker.getTime()).toBe(10);
+  }));
 });
