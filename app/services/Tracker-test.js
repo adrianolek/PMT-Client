@@ -43,4 +43,10 @@ describe('Tracker', function() {
     Tracker.tick();
     expect(Tracker.getTime()).toBe(10);
   }));
+
+  it('status should be idle',  inject(function(Tracker, $rootScope) {
+    Tracker.time = -1;
+    Tracker.tick();
+    expect($rootScope.status).toBe('Idle: 00:00:10');
+  }));
 });
