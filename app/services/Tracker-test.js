@@ -5,7 +5,11 @@ describe('Tracker', function() {
 
   beforeEach(function () {
     module('pmtClient.api', function ($provide) {
-      $provide.value('ApiClient', {});
+      $provide.value('ApiClient', {
+        track: function () {
+          return function(){};
+        }
+      });
     });
   });
 
@@ -48,5 +52,10 @@ describe('Tracker', function() {
     Tracker.time = -1;
     Tracker.tick();
     expect($rootScope.status).toBe('Idle: 00:00:10');
+  }));
+
+  it('should create idle track',  inject(function(Tracker) {
+    Tracker.idle();
+    expect(Tracker.isIdle).toBe(true);
   }));
 });
