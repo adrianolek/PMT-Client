@@ -58,4 +58,9 @@ describe('Tracker', function() {
     Tracker.idle();
     expect(Tracker.isIdle).toBe(true);
   }));
+
+  it('should create task track',  inject(function(Tracker) {
+    Tracker.task(1);
+    expect(Tracker.isIdle).toBe(false);
+  }));
 });
