@@ -63,4 +63,10 @@ describe('Tracker', function() {
     Tracker.task(1);
     expect(Tracker.isIdle).toBe(false);
   }));
+
+  it('should be stopped',  inject(function(Tracker) {
+    Tracker.idle();
+    Tracker.stop();
+    expect(Tracker.track).toBe(null);
+  }));
 });
