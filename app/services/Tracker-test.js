@@ -7,7 +7,9 @@ describe('Tracker', function() {
     module('pmtClient.api', function ($provide) {
       $provide.value('ApiClient', {
         track: function () {
-          return function(){};
+          var Track = function(){};
+          Track.prototype.$save = function(){};
+          return Track;
         }
       });
     });
@@ -68,5 +70,12 @@ describe('Tracker', function() {
     Tracker.idle();
     Tracker.stop();
     expect(Tracker.track).toBe(null);
+  }));
+
+  it('description should be saved',  inject(function(Tracker) {
+    Tracker.task(1);
+    Tracker.setDescription('foo');
+    Tracker.save();
+    expect(Tracker.track.description).toBe('foo');
   }));
 });
