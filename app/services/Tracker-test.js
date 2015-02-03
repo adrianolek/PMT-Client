@@ -66,6 +66,13 @@ describe('Tracker', function() {
     expect(Tracker.isIdle).toBe(false);
   }));
 
+  it('status should be working',  inject(function(Tracker, $rootScope) {
+    Tracker.task(1);
+    Tracker.time = -1;
+    Tracker.tick();
+    expect($rootScope.status).toBe('Working: 00:00:10');
+  }));
+
   it('should be stopped',  inject(function(Tracker) {
     Tracker.idle();
     Tracker.stop();
