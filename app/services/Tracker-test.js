@@ -8,7 +8,9 @@ describe('Tracker', function() {
       $provide.value('ApiClient', {
         track: function () {
           var Track = function(){};
-          Track.prototype.$save = function(){};
+          Track.prototype.$save = function(params){
+            this.params = params;
+          };
           return Track;
         }
       });
@@ -84,5 +86,11 @@ describe('Tracker', function() {
     Tracker.setDescription('foo');
     Tracker.save();
     expect(Tracker.track.description).toBe('foo');
+  }));
+
+  it('track should be complete',  inject(function(Tracker) {
+    Tracker.task(1);
+    Tracker.save(true);
+    expect(Tracker.track.params.complete).toBe(1);
   }));
 });
