@@ -28,6 +28,7 @@ angular.module('pmtClient.tracker', []).
       if (this.time < 0) {
         $rootScope.status = 'Waiting: ' + Math.abs(this.time);
       } else {
+        /* istanbul ignore else */
         if (this.time == 0) {
           this.time = 10;
         }
@@ -74,6 +75,7 @@ angular.module('pmtClient.tracker', []).
     };
 
     this.idle = function () {
+      /* istanbul ignore else */
       if (!this.isIdle) {
         this.newTrack()
       }
