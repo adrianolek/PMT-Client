@@ -13,7 +13,7 @@ module.exports = function(config) {
     exclude: [],
     reporters: ['progress', 'coverage'],
     preprocessors: {
-      'app/+(login|projects|services|tasks)/*.js': ['coverage']
+      'app/+(login|projects|services|tasks)/!(*-test).js': ['coverage']
     },
     port: 9876,
     colors: true,
