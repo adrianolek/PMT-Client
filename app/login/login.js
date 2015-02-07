@@ -6,11 +6,11 @@ angular.module('pmtClient.login', ['ngRoute', 'ngResource'])
     $routeProvider.when('/login', {templateUrl: 'login/login.html', controller: 'LoginCtrl'});
   }])
 
-  .controller('LoginCtrl', ['$scope', 'ApiClient', '$location', 'Tracker',
-    function ($scope, ApiClient, $location, Tracker) {
+  .controller('LoginCtrl', ['$scope', '$window', 'ApiClient', '$location', 'Tracker',
+    function ($scope, $window, ApiClient, $location, Tracker) {
     Tracker.stop();
     ApiClient.forget();
-    chrome.storage.local.remove('credentials');
+    $window.chrome.storage.local.remove('credentials');
 
     $scope.url = '';
     $scope.login = {
@@ -32,7 +32,7 @@ angular.module('pmtClient.login', ['ngRoute', 'ngResource'])
           $scope.error = '';
           ApiClient.setToken(user.token);
           if ($scope.remember) {
-            chrome.storage.local.set({'credentials': {'token': user.token, 'url': $scope.url}});
+            $window.chrome.storage.local.set({'credentials': {'token': user.token, 'url': $scope.url}});
           }
           $location.path('projects');
         }, function (response) {

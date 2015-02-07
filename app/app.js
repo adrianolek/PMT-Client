@@ -7,8 +7,9 @@ angular.module('pmtClient', ['ngRoute',
   'pmtClient.login',
   'pmtClient.projects',
   'pmtClient.tasks'])
-  .controller('StartCtrl', ['$scope', 'ApiClient', '$location', 'Tracker', function ($scope, ApiClient, $location, Tracker) {
-    chrome.storage.local.get('credentials', function(objects){
+  .controller('StartCtrl', ['$scope', '$window', 'ApiClient', '$location', 'Tracker',
+    function ($scope, $window, ApiClient, $location, Tracker) {
+    $window.chrome.storage.local.get('credentials', function(objects){
       var credentials = objects.credentials;
       if(credentials) {
         ApiClient.setToken(credentials.token);
