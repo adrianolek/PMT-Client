@@ -42,5 +42,11 @@ describe('LoginCtrl', function () {
     expect($scope.url).toBe('');
     expect($scope.login.username).toBe('');
     expect($scope.login.password).toBe('');
+    expect($scope.error).toBeUndefined();
+  });
+
+  it('empty submit should show error', function(){
+    $scope.doLogin();
+    expect($scope.error).toBeDefined();
   });
 });
