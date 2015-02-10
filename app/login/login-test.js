@@ -19,7 +19,13 @@ describe('LoginCtrl', function () {
     };
 
     ApiClient = {
-      forget: function () {}
+      forget: function () {},
+      login: function() {
+        return {
+          query: function() {}
+        };
+      },
+      setUrl: function() {}
     };
 
     Tracker = {
@@ -48,5 +54,17 @@ describe('LoginCtrl', function () {
   it('empty submit should show error', function(){
     $scope.doLogin();
     expect($scope.error).toBeDefined();
+    expect($scope.error).not.toBe('');
+  });
+
+  it('submit should info message', function(){
+    $scope.url = 'http://foo';
+    $scope.login = {
+      username: 'foo',
+      password: 'bar'
+    };
+    $scope.doLogin();
+    expect($scope.error).toBe('');
+    expect($scope.info).not.toBe('');
   });
 });
