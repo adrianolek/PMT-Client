@@ -25,7 +25,10 @@ describe('LoginCtrl', function () {
           query: function() {}
         };
       },
-      setUrl: function() {}
+      setUrl: function() {},
+      setToken: function(token){
+        this.token = token;
+      }
     };
 
     Tracker = {
@@ -66,5 +69,22 @@ describe('LoginCtrl', function () {
     $scope.doLogin();
     expect($scope.error).toBe('');
     expect($scope.info).not.toBe('');
+  });
+
+  it('should store login token', function(){
+    ApiClient.login = function () {
+      return {
+        query: function (login, cb) {
+          cb({token: 'baz'});
+        }
+      };
+    };
+    $scope.url = 'http://foo';
+    $scope.login = {
+      username: 'foo',
+      password: 'bar'
+    };
+    $scope.doLogin();
+    expect(ApiClient.token).toBe('baz');
   });
 });
