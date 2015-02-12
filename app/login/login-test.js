@@ -84,7 +84,21 @@ describe('LoginCtrl', function () {
       username: 'foo',
       password: 'bar'
     };
+    $scope.remember = true;
     $scope.doLogin();
     expect(ApiClient.token).toBe('baz');
+  });
+
+  it('should show invalid message', function(){
+    ApiClient.login = function () {
+      return {
+        query: function (login, cb, errorCb) {
+          errorCb({status: 403});
+        }
+      };
+    };
+    $scope.url = 'http://foo';
+    $scope.doLogin();
+    expect($scope.error).toBe('Invalid username or password.');
   });
 });
