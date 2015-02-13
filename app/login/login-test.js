@@ -101,4 +101,17 @@ describe('LoginCtrl', function () {
     $scope.doLogin();
     expect($scope.error).toBe('Invalid username or password.');
   });
+
+  it('should show url error', function(){
+    ApiClient.login = function () {
+      return {
+        query: function (login, cb, errorCb) {
+          errorCb({status: 500});
+        }
+      };
+    };
+    $scope.url = 'http://foo';
+    $scope.doLogin();
+    expect($scope.error).toBe('The url does not seem to be a PMT app.');
+  });
 });
