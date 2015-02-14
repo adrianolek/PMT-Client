@@ -31,6 +31,7 @@ angular.module('pmtClient.login', ['ngRoute', 'ngResource'])
           $scope.info = 'Logged in.';
           $scope.error = '';
           ApiClient.setToken(user.token);
+          /* istanbul ignore else */
           if ($scope.remember) {
             $window.chrome.storage.local.set({'credentials': {'token': user.token, 'url': $scope.url}});
           }
