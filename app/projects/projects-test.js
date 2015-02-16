@@ -6,9 +6,19 @@ describe('ProjectCtrl', function () {
   beforeEach(module('pmtClient.projects'));
 
   beforeEach(function () {
-    ApiClient = {};
+    ApiClient = {
+      projects: function() {
+        return {
+          query: function(params, cb) {
+            cb({projects: 'foo'})
+          }
+        };
+      }
+    };
 
-    Tracker = {};
+    Tracker = {
+      idle: function(){}
+    };
 
     module(function ($provide) {
       $provide.value('ApiClient', ApiClient);
@@ -20,4 +30,8 @@ describe('ProjectCtrl', function () {
     $scope = $rootScope.$new();
     $controller = _$controller_('ProjectsCtrl', {$scope: $scope, ApiClient: ApiClient, Tracker: Tracker});
   }));
+
+  it('should load projects', function(){
+    expect($scope.projects).toBe('foo');
+  });
 });
