@@ -37,3 +37,27 @@ describe('IndexCtrl', function () {
     expect($scope.tasks).toBe('bar');
   });
 });
+
+describe('ShowCtrl', function () {
+  var $scope, $controller, ApiClient, Tracker;
+
+  beforeEach(module('pmtClient.tasks'));
+
+  beforeEach(function () {
+    ApiClient = {};
+
+    Tracker = {};
+
+    module(function ($provide) {
+      $provide.value('ApiClient', ApiClient);
+      $provide.value('Tracker', Tracker);
+      $provide.value('$routeParams', {});
+      $provide.value('$location', {});
+    })
+  });
+
+  beforeEach(inject(function ($rootScope, _$controller_) {
+    $scope = $rootScope.$new();
+    $controller = _$controller_('ShowCtrl', {$scope: $scope, ApiClient: ApiClient, Tracker: Tracker});
+  }));
+});
