@@ -44,9 +44,22 @@ describe('ShowCtrl', function () {
   beforeEach(module('pmtClient.tasks'));
 
   beforeEach(function () {
-    ApiClient = {};
+    ApiClient = {
+      tasks: function() {
+        return {
+          get: function(params, cb) {
+            cb({project: 'foo',
+              task: {
+                name: 'bar'
+              }})
+          }
+        };
+      }
+    };
 
-    Tracker = {};
+    Tracker = {
+      task: function(){}
+    };
 
     module(function ($provide) {
       $provide.value('ApiClient', ApiClient);
@@ -60,4 +73,9 @@ describe('ShowCtrl', function () {
     $scope = $rootScope.$new();
     $controller = _$controller_('ShowCtrl', {$scope: $scope, ApiClient: ApiClient, Tracker: Tracker});
   }));
+
+  it('should load task', function(){
+    expect($scope.project).toBe('foo');
+    expect($scope.task.name).toBe('bar');
+  });
 });
