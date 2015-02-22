@@ -58,7 +58,9 @@ describe('ShowCtrl', function () {
     };
 
     Tracker = {
-      task: function(){}
+      task: function(){},
+      getTime: function(){ return 120; },
+      isDescriptionValid: function() { return false }
     };
 
     module(function ($provide) {
@@ -98,4 +100,9 @@ describe('ShowCtrl', function () {
     };
     $controller = _$controller_('ShowCtrl', {$scope: $scope, ApiClient: ApiClient, Tracker: Tracker, $location: location});
   }));
+
+  it('should show finish error', function(){
+    $scope.finish();
+    expect($scope.error).toBe(true);
+  });
 });
