@@ -39,6 +39,7 @@ angular.module('pmtClient.tasks', ['ngRoute', 'ngResource'])
     });
 
     $scope.finish = function () {
+      /* istanbul ignore else */
       if(Tracker.getTime() > 60 && !Tracker.isDescriptionValid()) {
         $scope.error = true;
         return;
