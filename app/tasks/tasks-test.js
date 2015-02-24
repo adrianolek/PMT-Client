@@ -105,4 +105,21 @@ describe('ShowCtrl', function () {
     $scope.finish();
     expect($scope.error).toBe(true);
   });
+
+  it('should redirect after finish', inject(function($rootScope, _$controller_){
+    $scope = $rootScope.$new();
+    Tracker = {
+      task: function(){},
+      save: function(){},
+      getTime: function(){ return 120; },
+      isDescriptionValid: function() { return true }
+    };
+    var location = {
+      path: function(p){
+        expect(p).toMatch(/tasks$/);
+      }
+    };
+    $controller = _$controller_('ShowCtrl', {$scope: $scope, ApiClient: ApiClient, Tracker: Tracker, $location: location});
+    $scope.finish();
+  }));
 });
