@@ -122,4 +122,12 @@ describe('ShowCtrl', function () {
     $controller = _$controller_('ShowCtrl', {$scope: $scope, ApiClient: ApiClient, Tracker: Tracker, $location: location});
     $scope.finish();
   }));
+
+  it('should set tracker description', function(){
+    $scope.description = 'foo';
+    Tracker.setDescription = function(val){
+      expect(val).toBe('foo');
+    };
+    $scope.$digest();
+  });
 });
