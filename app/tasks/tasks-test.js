@@ -138,9 +138,22 @@ describe('EstimateCtrl', function () {
   beforeEach(module('pmtClient.tasks'));
 
   beforeEach(function () {
-    ApiClient = {};
+    ApiClient = {
+      tasks: function() {
+        return {
+          get: function(params, cb) {
+            cb({project: 'foo',
+              task: {
+                estimatedTime: 0
+              }})
+          }
+        };
+      }
+    };
 
-    Tracker = {};
+    Tracker = {
+      idle: function(){}
+    };
 
     module(function ($provide) {
       $provide.value('ApiClient', ApiClient);
@@ -153,4 +166,8 @@ describe('EstimateCtrl', function () {
     $scope = $rootScope.$new();
     $controller = _$controller_('EstimateCtrl', {$scope: $scope, ApiClient: ApiClient, Tracker: Tracker});
   }));
+
+  it('should load estimated time', function(){
+    expect($scope.estimate).toBe(0);
+  });
 });
