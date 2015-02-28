@@ -170,4 +170,9 @@ describe('EstimateCtrl', function () {
   it('should load estimated time', function(){
     expect($scope.estimate).toBe(0);
   });
+
+  it('should display error', function(){
+    $scope.save();
+    expect($scope.error).toBe(true);
+  });
 });
