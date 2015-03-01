@@ -139,13 +139,18 @@ describe('EstimateCtrl', function () {
 
   beforeEach(function () {
     ApiClient = {
-      tasks: function() {
+      tasks: function () {
         return {
-          get: function(params, cb) {
-            cb({project: 'foo',
+          get: function (params, cb) {
+            cb({
+              project: 'foo',
               task: {
                 estimatedTime: 0
-              }})
+              },
+              $estimate: function (params, cb) {
+                cb();
+              }
+            })
           }
         };
       }
@@ -174,5 +179,11 @@ describe('EstimateCtrl', function () {
   it('should display error', function(){
     $scope.save();
     expect($scope.error).toBe(true);
+  });
+
+  it('should save estimated time', function(){
+    $scope.estimate = 60;
+    $scope.save();
+    expect($scope.error).toBeUndefined();
   });
 });

@@ -52,6 +52,15 @@ describe('Tracker', function() {
     expect(Tracker.getTime()).toBe(10);
   }));
 
+  it('should save every 10 seconds',  inject(function(Tracker) {
+    Tracker.time = 8;
+    spyOn(Tracker, 'save');
+    Tracker.tick();
+    expect(Tracker.save).not.toHaveBeenCalled();
+    Tracker.tick();
+    expect(Tracker.save).toHaveBeenCalled();
+  }));
+
   it('status should be idle',  inject(function(Tracker, $rootScope) {
     Tracker.time = -1;
     Tracker.tick();
