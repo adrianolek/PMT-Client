@@ -17,7 +17,7 @@ describe('ProjectCtrl', function () {
     };
 
     Tracker = {
-      idle: function(){}
+      idle: jasmine.createSpy('idle')
     };
 
     module(function ($provide) {
@@ -33,5 +33,9 @@ describe('ProjectCtrl', function () {
 
   it('should load projects', function(){
     expect($scope.projects).toBe('foo');
+  });
+
+  it('it should track idle', function(){
+    expect(Tracker.idle).toHaveBeenCalled();
   });
 });
