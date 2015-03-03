@@ -17,7 +17,7 @@ describe('IndexCtrl', function () {
     };
 
     Tracker = {
-      idle: function() {}
+      idle: jasmine.createSpy('idle')
     };
 
     module(function ($provide) {
@@ -35,6 +35,10 @@ describe('IndexCtrl', function () {
   it('should load tasks', function(){
     expect($scope.project).toBe('foo');
     expect($scope.tasks).toBe('bar');
+  });
+
+  it('it should track idle', function(){
+    expect(Tracker.idle).toHaveBeenCalled();
   });
 });
 
