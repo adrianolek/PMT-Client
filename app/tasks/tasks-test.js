@@ -62,7 +62,7 @@ describe('ShowCtrl', function () {
     };
 
     Tracker = {
-      task: function(){},
+      task: jasmine.createSpy('task'),
       getTime: function(){ return 120; },
       isDescriptionValid: function() { return false }
     };
@@ -83,6 +83,10 @@ describe('ShowCtrl', function () {
   it('should load task', function(){
     expect($scope.project).toBe('foo');
     expect($scope.task.name).toBe('bar');
+  });
+
+  it('it should track task', function(){
+    expect(Tracker.task).toHaveBeenCalled();
   });
 
   it('should redirect to estimate', inject(function($rootScope, _$controller_){
