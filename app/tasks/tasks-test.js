@@ -165,7 +165,7 @@ describe('EstimateCtrl', function () {
     };
 
     Tracker = {
-      idle: function(){}
+      idle: jasmine.createSpy('idle')
     };
 
     module(function ($provide) {
@@ -193,5 +193,9 @@ describe('EstimateCtrl', function () {
     $scope.estimate = 60;
     $scope.save();
     expect($scope.error).toBeUndefined();
+  });
+
+  it('it should track idle', function(){
+    expect(Tracker.idle).toHaveBeenCalled();
   });
 });
