@@ -1,4 +1,5 @@
 {
+  "repository": { "type": "git", "url": "https://github.com/adrianolek/PMT-Client.git" },
   "devDependencies": {
     "bower": "~1.3",
     "del": "~1.1.1",
