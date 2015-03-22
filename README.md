@@ -11,6 +11,13 @@ Installation
 You will need [Node.js](https://nodejs.org/download/) to build the application.
 First install dependencies using npm:
 
-       npm install
+    npm install
 
 After Node.js packages installation is done, Bower will automatically install required web packages.
+
+Build
+-----
+
+To build the application simply run:
+
+    npm run-script build
