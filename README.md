@@ -21,3 +21,10 @@ Build
 To build the application simply run:
 
     npm run-script build
+
+Run
+---
+
+After building the application you can run it via:
+
+    google-chrome --load-and-launch-app=build
