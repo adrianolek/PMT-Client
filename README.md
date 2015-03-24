@@ -28,3 +28,10 @@ Run
 After building the application you can run it via:
 
     google-chrome --load-and-launch-app=build
+
+Test
+----
+
+In order to run the test suite use:
+
+    npm run-script test-single-run
