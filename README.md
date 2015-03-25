@@ -15,6 +15,10 @@ First install dependencies using npm:
 
 After Node.js packages installation is done, Bower will automatically install required web packages.
 
+In case you need to reinstall the Bower packages you can do it by issuing:
+
+    node_modules/bower/bin/bower install
+
 Build
 -----
 
