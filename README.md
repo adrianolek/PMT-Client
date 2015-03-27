@@ -26,6 +26,8 @@ To build the application simply run:
 
     npm run-script build
 
+The built application will be stored in the `build` directory.
+
 Run
 ---
 
