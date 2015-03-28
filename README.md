@@ -28,6 +28,12 @@ To build the application simply run:
 
 The built application will be stored in the `build` directory.
 
+Additionally there is a `dist` script:
+
+    npm run-script build
+
+which will build the app and pack it into a zip file into the `dist` directory.
+
 Run
 ---
 
