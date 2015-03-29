@@ -47,3 +47,7 @@ Test
 In order to run the test suite use:
 
     npm run-script test-single-run
+
+You can also start the Karma test runner with files auto watch by:
+
+    npm test
