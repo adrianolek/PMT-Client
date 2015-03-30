@@ -41,6 +41,8 @@ After building the application you can run it via:
 
     google-chrome --load-and-launch-app=build
 
+To be able to use the app, you will need a [Project Management Tool](https://github.com/adrianolek/PMT) running somewhere.
+
 Test
 ----
 
