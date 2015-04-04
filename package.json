@@ -28,6 +28,7 @@
   },
   "scripts": {
     "postinstall": "node_modules/bower/bin/bower install",
+    "start": "node_modules/http-server/bin/http-server app -a localhost -p 8000 -c-1",
     "test": "node_modules/karma/bin/karma start",
     "test-single-run": "node_modules/karma/bin/karma start --no-auto-watch --single-run --reporters=dots --browsers=Firefox",
     "build": "node_modules/gulp/bin/gulp.js build",
