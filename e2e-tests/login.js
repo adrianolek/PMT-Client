@@ -2,7 +2,9 @@
 
 describe('login', function() {
 
-  browser.get('/');
+  beforeEach(function() {
+    browser.get('/');
+  });
 
   it('should show login page', function() {
     expect(browser.getLocationAbsUrl()).toMatch('/login');
