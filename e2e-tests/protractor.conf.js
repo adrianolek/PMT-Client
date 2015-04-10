@@ -4,7 +4,10 @@ exports.config = {
   ],
 
   capabilities: {
-    'browserName': 'chrome'
+    'browserName': 'chrome',
+    'chromeOptions':{
+      'args': ['load-and-launch-app=.']
+    }
   },
 
   framework: 'jasmine2',
