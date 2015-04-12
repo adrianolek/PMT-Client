@@ -1,12 +1,11 @@
 'use strict';
+var switchWindow = require('./switchWindow');
 
 describe('login', function() {
 
-  beforeEach(function() {
-    browser.get('/');
-  });
+  beforeAll(switchWindow);
 
   it('should show login page', function() {
-    expect(browser.getLocationAbsUrl()).toMatch('/login');
+    expect(browser.getLocationAbsUrl()).toBe('/login');
   });
 });
