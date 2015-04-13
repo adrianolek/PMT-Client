@@ -8,4 +8,9 @@ describe('login', function() {
   it('should show login page', function() {
     expect(browser.getLocationAbsUrl()).toBe('/login');
   });
+
+  it('empty submit should show error', function() {
+    element(by.buttonText('Sign in')).click();
+    expect(element(by.binding('error')).isDisplayed()).toBe(true);
+  });
 });
